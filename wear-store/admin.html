@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Administrador | WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<section class="catalogo">
+
+<h1>ADMINISTRADOR WEAR SHOP</h1>
+
+<div style="max-width:900px;margin:40px auto;">
+<h2 id="tituloFormulario">
+CREAR PRODUCTO
+</h2>
+
+<input
+type="hidden"
+id="productoEditando">
+
+<input
+type="text"
+id="nombreProducto"
+placeholder="Nombre del producto"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<input
+type="number"
+id="precioProducto"
+placeholder="Precio"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<input
+type="number"
+id="stockProducto"
+placeholder="Stock Inicial"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<select
+id="categoriaProducto"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<option value="hombre">Hombre</option>
+<option value="mujer">Mujer</option>
+
+</select>
+
+<input
+type="file"
+id="imagenProducto"
+accept="image/*"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<h3>Tallas Disponibles</h3>
+
+<label><input type="checkbox" value="S"> S</label>
+<label><input type="checkbox" value="M"> M</label>
+<label><input type="checkbox" value="L"> L</label>
+<label><input type="checkbox" value="XL"> XL</label>
+
+<br><br>
+
+<button
+class="btn-producto"
+id="btnGuardar"
+onclick="guardarProducto()">
+
+GUARDAR PRODUCTO
+
+</button>
+
+<button
+class="btn-producto"
+onclick="cerrarSesion()"
+style="margin-left:10px;">
+
+CERRAR SESIÓN
+
+</button>
+
+<hr style="margin:40px 0;">
+
+<h2>PRODUCTOS CREADOS</h2>
+
+<div id="listaProductos"></div>
+
+</div>
+
+</section>
+
+<script src="js/admin.js"></script>
+
+</body>
+
+</html>

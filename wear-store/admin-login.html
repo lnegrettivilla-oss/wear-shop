@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Acceso Administrador | WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<section class="catalogo">
+
+<h1>ADMINISTRADOR WEAR SHOP</h1>
+
+<div style="max-width:500px;margin:50px auto;">
+
+<input
+type="text"
+id="usuario"
+placeholder="Usuario"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<input
+type="password"
+id="password"
+placeholder="Contraseña"
+style="width:100%;padding:15px;margin-bottom:15px;">
+
+<button
+class="btn-producto"
+style="width:100%;"
+onclick="login()">
+
+INGRESAR
+
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+function login(){
+
+    const usuario =
+    document.getElementById("usuario").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    if(
+        usuario === "admin"
+        &&
+        password === "Luisana2026"
+    ){
+
+        localStorage.setItem(
+            "adminLogueado",
+            "si"
+        );
+
+        window.location.href =
+        "admin.html";
+
+    }else{
+
+        alert(
+            "Usuario o contraseña incorrectos"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

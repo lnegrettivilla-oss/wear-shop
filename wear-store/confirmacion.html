@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Confirmación | WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<a href="checkout.html" class="volver">
+← Modificar datos
+</a>
+
+</header>
+
+<section class="catalogo">
+
+<h1>CONFIRMACIÓN DE PEDIDO</h1>
+
+<div style="max-width:700px;margin:40px auto;text-align:left;">
+
+<h2>DATOS DEL CLIENTE</h2>
+
+<p><strong>Nombre:</strong> <span id="mostrarNombre"></span></p>
+
+<p><strong>Teléfono:</strong> <span id="mostrarTelefono"></span></p>
+
+<p><strong>Correo:</strong> <span id="mostrarCorreo"></span></p>
+
+<p><strong>Dirección:</strong> <span id="mostrarDireccion"></span></p>
+
+<p><strong>Comuna:</strong> <span id="mostrarComuna"></span></p>
+
+<p><strong>Región:</strong> <span id="mostrarRegion"></span></p>
+
+<hr style="margin:30px 0;">
+
+<h2>RESUMEN DEL PEDIDO</h2>
+
+<div id="resumenPedido"></div>
+
+<h2 id="totalPedido" style="margin-top:20px;"></h2>
+
+<p>
+Revisa cuidadosamente tus datos antes de continuar al pago.
+</p>
+
+<button
+class="btn-producto"
+style="width:100%;margin-top:20px;"
+onclick="window.location.href='pago.html'">
+
+CONTINUAR AL PAGO
+
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+document.getElementById("mostrarNombre").innerText =
+localStorage.getItem("nombre") || "";
+
+document.getElementById("mostrarTelefono").innerText =
+localStorage.getItem("telefono") || "";
+
+document.getElementById("mostrarCorreo").innerText =
+localStorage.getItem("correo") || "";
+
+document.getElementById("mostrarDireccion").innerText =
+localStorage.getItem("direccion") || "";
+
+document.getElementById("mostrarComuna").innerText =
+localStorage.getItem("comuna") || "";
+
+document.getElementById("mostrarRegion").innerText =
+localStorage.getItem("region") || "";
+
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+let html = "";
+let total = 0;
+
+for(let i = 0; i < carrito.length; i++){
+
+    total += Number(carrito[i].precio);
+
+    html += `
+    <div style="
+        display:flex;
+        gap:15px;
+        align-items:center;
+        margin-bottom:15px;
+        padding-bottom:15px;
+        border-bottom:1px solid #ddd;
+    ">
+
+        <img
+        src="${carrito[i].imagen}"
+        style="
+            width:80px;
+            height:80px;
+            object-fit:cover;
+            border-radius:6px;
+        ">
+
+        <div>
+
+            <strong>${carrito[i].nombre}</strong>
+
+            <p>Talla: ${carrito[i].talla}</p>
+
+            <p>$${Number(carrito[i].precio).toLocaleString("es-CL")}</p>
+
+        </div>
+
+    </div>
+    `;
+
+}
+
+document.getElementById("resumenPedido").innerHTML = html;
+
+document.getElementById("totalPedido").innerHTML =
+"TOTAL: $" + total.toLocaleString("es-CL");
+
+</script>
+
+</body>
+
+</html>

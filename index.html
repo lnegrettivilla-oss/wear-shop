@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- MENU LATERAL -->
+
+<div class="sidebar" id="sidebar">
+
+
+<div class="close-btn" onclick="toggleMenu()">
+    ✕
+</div>
+
+<a href="mujer.html">MUJER</a>
+
+<a href="hombre.html">HOMBRE</a>
+
+<a href="https://wa.me/56935616391?text=Hola%20WEAR%20SHOP,%20tengo%20una%20consulta." target="_blank">
+    CONTACTO
+</a>
+
+<a href="https://www.tiktok.com/" target="_blank">
+    TIKTOK
+</a>
+
+
+</div>
+
+<!-- CARRITO -->
+
+<div class="cart-sidebar" id="cartSidebar">
+
+
+<div class="close-btn" onclick="toggleCart()">
+    ✕
+</div>
+
+<h2>MI CARRITO</h2>
+
+<div class="cart-content">
+    <p>No hay productos agregados.</p>
+</div>
+
+<button
+    type="button"
+    class="checkout-btn"
+    onclick="location.href='checkout.html';">
+    FINALIZAR COMPRA
+</button>
+
+
+</div>
+
+<!-- HEADER -->
+
+<header>
+
+
+<div class="menu-btn" onclick="toggleMenu()">
+    ☰
+</div>
+
+<div class="cart-btn" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+</div>
+
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+
+<div class="hero-overlay">
+
+<h1 class="titulo-principal">
+    WEAR SHOP
+</h1>
+
+<p class="subtitulo">
+    Tu estilo comienza aquí
+</p>
+
+<p style="
+    margin-top:10px;
+    font-size:14px;
+    letter-spacing:2px;
+    opacity:0.8;
+">
+    by Luisana
+</p>
+
+    <div class="categorias-home">
+
+        <div class="categoria-home">
+
+            <h2>HOMBRE</h2>
+
+            <a href="hombre.html">
+
+                <button>
+                    VER CATÁLOGO
+                </button>
+
+            </a>
+
+        </div>
+
+        <div class="categoria-home">
+
+            <h2>MUJER</h2>
+
+            <a href="mujer.html">
+
+                <button>
+                    VER CATÁLOGO
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+
+<div class="footer-item">
+    🚚 ENVÍOS A TODO CHILE
+</div>
+
+<div class="footer-item">
+    🔒 COMPRA 100% SEGURA
+</div>
+
+<div class="footer-item">
+    💳 PAGO SEGURO CON MERCADO PAGO
+</div>
+
+<div class="footer-item">
+    📞 ATENCIÓN AL CLIENTE
+</div>
+
+
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

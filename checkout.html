@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<a href="index.html" class="volver">
+← Volver al inicio
+</a>
+
+</header>
+
+<section class="catalogo">
+
+<h1>DATOS DE ENVÍO</h1>
+
+<div style="max-width:600px;margin:40px auto;">
+
+<input
+type="text"
+id="nombre"
+placeholder="Nombre Completo"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<input
+type="tel"
+id="telefono"
+placeholder="Teléfono"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<input
+type="email"
+id="correo"
+placeholder="Correo Electrónico"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<input
+type="text"
+id="direccion"
+placeholder="Dirección"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<input
+type="text"
+id="comuna"
+placeholder="Comuna"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<input
+type="text"
+id="region"
+placeholder="Región"
+style="width:100%;padding:15px;margin-bottom:15px;"
+>
+
+<button
+class="btn-producto"
+style="width:100%;"
+onclick="continuarPedido()">
+CONTINUAR
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+function continuarPedido(){
+
+    localStorage.setItem(
+        "nombre",
+        document.getElementById("nombre").value
+    );
+
+    localStorage.setItem(
+        "telefono",
+        document.getElementById("telefono").value
+    );
+
+    localStorage.setItem(
+        "correo",
+        document.getElementById("correo").value
+    );
+
+    localStorage.setItem(
+        "direccion",
+        document.getElementById("direccion").value
+    );
+
+    localStorage.setItem(
+        "comuna",
+        document.getElementById("comuna").value
+    );
+
+    localStorage.setItem(
+        "region",
+        document.getElementById("region").value
+    );
+
+    window.location.href = "confirmacion.html";
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mujer | WEAR SHOP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar" id="sidebar">
+
+<div class="close-btn" onclick="toggleMenu()">
+✕
+</div>
+
+<a href="index.html">INICIO</a> <a href="mujer.html">MUJER</a> <a href="hombre.html">HOMBRE</a> <a href="https://wa.me/56935616391?text=Hola%20WEAR%20SHOP,%20tengo%20una%20consulta." target="_blank">CONTACTO</a> <a href="https://www.tiktok.com/@wearshop102" target="_blank">TIKTOK</a>
+
+</div>
+
+<div class="cart-sidebar" id="cartSidebar">
+
+<div class="close-btn" onclick="toggleCart()">
+✕
+</div>
+
+<h2>MI CARRITO</h2>
+
+<div class="cart-content">
+<p>No hay productos agregados.</p>
+</div>
+
+<button
+type="button"
+class="checkout-btn"
+onclick="location.href='checkout.html';">
+
+FINALIZAR COMPRA
+
+</button>
+
+</div>
+
+<header>
+
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+
+<div class="cart-btn" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
+
+</header>
+
+<div style="margin:120px 0 0 40px;">
+
+<button
+type="button"
+onclick="location.href='index.html';"
+style="background:#fff;color:#000;border:none;padding:12px 20px;cursor:pointer;font-weight:bold;border-radius:5px;">
+
+← INICIO
+
+</button>
+
+</div>
+
+<section class="catalogo">
+
+<h1>MUJER</h1>
+
+<div class="subcategorias">
+
+<div class="subcategoria">
+ROPA
+</div>
+
+<div class="subcategoria">
+ZAPATOS
+</div>
+
+</div>
+
+<section class="productos" id="productos-mujer">
+
+</section>
+
+</section>
+
+<script>
+
+const productos =
+JSON.parse(localStorage.getItem("productos")) || [];
+
+const contenedor =
+document.getElementById("productos-mujer");
+
+let html = "";
+
+productos.forEach((producto,index)=>{
+
+if(
+producto.categoria !== "mujer" ||
+producto.stock <= 0
+){
+return;
+}
+
+let opcionesTallas = "";
+
+producto.tallas.forEach(talla => {
+
+opcionesTallas += `
+<option>${talla}</option>
+`;
+
+});
+
+html += `
+
+<div class="producto">
+
+<div class="producto-img">
+
+<img src="${producto.imagen}">
+
+</div>
+
+<h3>${producto.nombre}</h3>
+
+<p class="precio">
+$${Number(producto.precio).toLocaleString("es-CL")}
+</p>
+
+<p>
+Stock: ${producto.stock}
+</p>
+
+<select id="talla-${index}">
+${opcionesTallas}
+</select>
+
+<button
+class="btn-producto"
+onclick="agregarProducto(
+'${producto.nombre}',
+${producto.precio},
+'${producto.imagen}',
+document.getElementById('talla-${index}').value
+)">
+
+AGREGAR
+
+</button>
+
+</div>
+
+`;
+
+});
+
+if(html === ""){
+
+html = `
+
+<div style="
+width:100%;
+text-align:center;
+padding:60px 20px;
+">
+
+<h2>
+No existen productos publicados
+</h2>
+
+<p>
+Ingresa productos desde el Panel Administrador.
+</p>
+
+</div>
+
+`;
+
+}
+
+contenedor.innerHTML = html;
+
+</script>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
