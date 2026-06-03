@@ -93,8 +93,15 @@ ZAPATOS
 
 <script>
 
-const productos =
-JSON.parse(localStorage.getItem("productos")) || [];
+async function cargarProductos() {
+
+    const productos = await obtenerProductos();
+
+    console.log(productos);
+
+}
+
+cargarProductos();
 
 const contenedor =
 document.getElementById("productos-hombre");
@@ -191,6 +198,9 @@ contenedor.innerHTML = html;
 
 </script>
 
+<script src="js/app.js"></script>
+
+<script src="js/supabase.js"></script>
 <script src="js/app.js"></script>
 
 </body>
