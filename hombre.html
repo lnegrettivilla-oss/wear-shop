@@ -17,77 +17,80 @@
 
 <div class="sidebar" id="sidebar">
 
-<div class="close-btn" onclick="toggleMenu()">
-✕
-</div>
+    <div class="close-btn" onclick="toggleMenu()">
+        ✕
+    </div>
 
-<a href="index.html">INICIO</a> <a href="mujer.html">MUJER</a> <a href="hombre.html">HOMBRE</a> <a href="https://wa.me/56935616391" target="_blank">CONTACTO</a>
+    <a href="index.html">INICIO</a>
+    <a href="mujer.html">MUJER</a>
+    <a href="hombre.html">HOMBRE</a>
+    <a href="https://wa.me/56935616391" target="_blank">CONTACTO</a>
 
 </div>
 
 <div class="cart-sidebar" id="cartSidebar">
 
-<div class="close-btn" onclick="toggleCart()">
-✕
-</div>
+    <div class="close-btn" onclick="toggleCart()">
+        ✕
+    </div>
 
-<h2>MI CARRITO</h2>
+    <h2>MI CARRITO</h2>
 
-<div class="cart-content">
-<p>No hay productos agregados.</p>
-</div>
+    <div class="cart-content">
+        <p>No hay productos agregados.</p>
+    </div>
 
-<button
-class="checkout-btn"
-onclick="window.location.href='checkout.html'">
-FINALIZAR COMPRA </button>
+    <button
+        class="checkout-btn"
+        onclick="window.location.href='checkout.html'">
+        FINALIZAR COMPRA
+    </button>
 
 </div>
 
 <header>
 
-<div class="menu-btn" onclick="toggleMenu()">
-☰
-</div>
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
 
-<div class="cart-btn" onclick="toggleCart()">
-🛒 <span id="cart-count">0</span>
-</div>
+    <div class="cart-btn" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
 
 </header>
 
 <div style="margin:120px 0 0 40px;">
 
-<button
-type="button"
-onclick="location.href='index.html';"
-style="background:#fff;color:#000;border:none;padding:12px 20px;cursor:pointer;font-weight:bold;border-radius:5px;">
+    <button
+        type="button"
+        onclick="location.href='index.html';"
+        style="background:#fff;color:#000;border:none;padding:12px 20px;cursor:pointer;font-weight:bold;border-radius:5px;">
 
-← INICIO
+        ← INICIO
 
-</button>
+    </button>
 
 </div>
 
 <section class="catalogo">
 
-<h1>HOMBRE</h1>
+    <h1>HOMBRE</h1>
 
-<div class="subcategorias">
+    <div class="subcategorias">
 
-<div class="subcategoria">
-ROPA
-</div>
+        <div class="subcategoria">
+            ROPA
+        </div>
 
-<div class="subcategoria">
-ZAPATOS
-</div>
+        <div class="subcategoria">
+            ZAPATOS
+        </div>
 
-</div>
+    </div>
 
-<section class="productos" id="productos-hombre">
-
-</section>
+    <section class="productos" id="productos-hombre">
+    </section>
 
 </section>
 
@@ -98,103 +101,140 @@ ZAPATOS
 
 async function cargarProductos() {
 
-    const productos = await obtenerProductos();
+    try {
 
-    const contenedor =
-    document.getElementById("productos-hombre");
+        const productos = await obtenerProductos();
 
-    let html = "";
+        const contenedor =
+        document.getElementById("productos-hombre");
 
-    productos.forEach((producto,index)=>{
+        let html = "";
 
-        if(producto.categoria !== "hombre"){
-            return;
-        }
+        productos.forEach((producto,index)=>{
 
-        let opcionesTallas = "";
+            if (
+                producto.categoria !== "hombre" ||
+                Number(producto.stock || 0) <= 0
+            ) {
+                return;
+            }
 
-        if(producto.tallas){
+            let opcionesTallas = "";
 
-            producto.tallas.forEach(talla => {
+            const tallas =
+            (producto.tallas || "")
+            .split(",");
 
-                opcionesTallas += `
-                <option>${talla}</option>
-                `;
+            tallas.forEach(talla => {
+
+                if(talla.trim() !== ""){
+
+                    opcionesTallas += `
+                    <option>${talla.trim()}</option>
+                    `;
+
+                }
 
             });
 
-        }
+            html += `
 
-        html += `
+            <div class="producto">
 
-        <div class="producto">
+                <div class="producto-img">
+                    <img src="${producto.imagen}">
+                </div>
 
-            <div class="producto-img">
-                <img src="${producto.imagen}">
+                <h3>${producto.nombre}</h3>
+
+                <p class="precio">
+                    $${Number(producto.precio).toLocaleString("es-CL")}
+                </p>
+
+                <p>
+                    Stock: ${producto.stock}
+                </p>
+
+                <select id="talla-${index}">
+                    ${opcionesTallas}
+                </select>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarProducto(
+                        '${producto.nombre}',
+                        ${producto.precio},
+                        '${producto.imagen}',
+                        document.getElementById('talla-${index}').value
+                    )">
+
+                    AGREGAR
+
+                </button>
+
             </div>
 
-            <h3>${producto.nombre}</h3>
+            `;
 
-            <p class="precio">
-                $${Number(producto.precio).toLocaleString("es-CL")}
-            </p>
+        });
 
-            <p>
-                Stock: ${producto.stock || 0}
-            </p>
+        if(html === ""){
 
-            <select id="talla-${index}">
-                ${opcionesTallas}
-            </select>
+            html = `
 
-            <button
-            class="btn-producto"
-            onclick="agregarProducto(
-                '${producto.nombre}',
-                ${producto.precio},
-                '${producto.imagen}',
-                document.getElementById('talla-${index}').value
-            )">
+            <div style="
+                width:100%;
+                text-align:center;
+                padding:60px 20px;
+            ">
 
-            AGREGAR
+                <h2>
+                    No existen productos publicados
+                </h2>
 
-            </button>
+                <p>
+                    No hay productos para hombre disponibles.
+                </p>
 
-        </div>
+            </div>
 
-        `;
+            `;
 
-    });
+        }
 
-    if(html === ""){
+        contenedor.innerHTML = html;
 
-        html = `
+    }
 
-        <div style="
-        width:100%;
-        text-align:center;
-        padding:60px 20px;
-        ">
+    catch(error){
 
-        <h2>
-        No existen productos publicados
-        </h2>
+        console.error(error);
 
-        <p>
-        Ingresa productos desde el Panel Administrador.
-        </p>
+        document.getElementById("productos-hombre").innerHTML = `
 
-        </div>
+            <div style="
+                width:100%;
+                text-align:center;
+                padding:60px 20px;
+                color:red;
+            ">
+
+                <h2>Error cargando productos</h2>
+
+                <p>${error.message}</p>
+
+            </div>
 
         `;
 
     }
 
-    contenedor.innerHTML = html;
-
 }
 
-cargarProductos();
+document.addEventListener(
+    "DOMContentLoaded",
+    cargarProductos
+);
 
 </script>
 
