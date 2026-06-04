@@ -13,5 +13,9 @@ async function obtenerProductos() {
         }
     );
 
-    return await respuesta.json();
+const datos = await respuesta.json();
+
+console.log("DATOS SUPABASE:", datos);
+
+return datos;
 }
