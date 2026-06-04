@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://ywbtyjnfgvrybyuxixsv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ToQc7aO0GkuPQEBaPK1PJA_yJLuaOhy";
+const SUPABASE_KEY = "TU_KEY";
 
 async function obtenerProductos() {
 
